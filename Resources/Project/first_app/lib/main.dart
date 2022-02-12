@@ -45,6 +45,35 @@ class _MyAppState extends State<MyApp> {
               )
             ],
           ),
+          drawer: Drawer(
+            child: ListView(
+              children: [
+                Container(
+                  height: 70,
+                  padding: const EdgeInsets.only(top: 20),
+                  decoration: const BoxDecoration(color: Colors.blue),
+                  alignment: const Alignment(0.0, 0.0),
+                  child: const DrawerHeader(
+                    padding: EdgeInsets.zero,
+                    child: Text(
+                      'Drawer Header',
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 247, 246, 252),
+                        fontSize: 24,
+                      ),
+                    ),
+                  ),
+                ),
+                ListTile(
+                  leading: const Icon(Icons.home),
+                  title: const Text('Home'),
+                  onTap: () {
+                    // Navigator.of(context).pushNamed()
+                  },
+                )
+              ],
+            ),
+          ),
           body: Center(
             child: Text('$_count'),
           ),
