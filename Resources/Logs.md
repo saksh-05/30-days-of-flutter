@@ -34,3 +34,15 @@
   - [ListView.custom](https://api.flutter.dev/flutter/widgets/ListView/ListView.custom.html)
 
 [see my progress](https://github.com/saurabhtopthon01/100-days-of-flutter/tree/main/Resources/Project/first_app)
+
+## Day 4: February 22, 2022
+
+**Progress**
+
+- _SLiverAppBar_ - A material design app bar that integrates with CustomScrollView. An app bar consists of a toolbar and potentially other widgets, such as a TabBar and a FlexibleSpaceBar. [Animated Example](https://api.flutter.dev/flutter/material/SliverAppBar-class.html).
+
+  - SliverAppBar provide three behaviour pinned, snap, flaot.
+  - Use delegate and SliverChildBuilderDelegate for Sliverlist.
+  - Use [TabBar](https://api.flutter.dev/flutter/material/TabBar-class.html) and [FlexibleSpaceBar](https://api.flutter.dev/flutter/material/FlexibleSpaceBar-class.html).
+
+[see my progress](https://github.com/saurabhtopthon01/100-days-of-flutter/tree/main/Resources/Project/first_app)
