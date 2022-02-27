@@ -31,20 +31,20 @@ class _MyAppState extends State<MyApp> {
         ),
       ),
       home: Scaffold(
-          appBar: AppBar(
-            leading: const IconButton(
-              onPressed: null,
-              icon: Icon(Icons.menu),
-            ),
-            title: const Text("App"),
-            actions: [
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.search),
-                tooltip: 'Search',
-              )
-            ],
-          ),
+          // appBar: AppBar(
+          //   leading: const IconButton(
+          //     onPressed: null,
+          //     icon: Icon(Icons.menu),
+          //   ),
+          //   title: const Text("App"),
+          //   actions: [
+          //     IconButton(
+          //       onPressed: () {},
+          //       icon: const Icon(Icons.search),
+          //       tooltip: 'Search',
+          //     )
+          //   ],
+          // ),
           drawer: Drawer(
             child: ListView(
               children: [
@@ -74,9 +74,71 @@ class _MyAppState extends State<MyApp> {
               ],
             ),
           ),
-          body: Center(
-            child: Text('$_count'),
+          body: SingleChildScrollView(
+            child: Column(
+              children: const [
+                Text(
+                  'Checking scrollview',
+                  textScaleFactor: 10,
+                ),
+                Text(
+                  'using column widget',
+                  textScaleFactor: 10,
+                ),
+              ],
+            ),
           ),
+          //  CustomScrollView(
+          //   slivers: [
+          //     const SliverPadding(
+          //       padding: EdgeInsets.symmetric(
+          //         vertical: 0,
+          //         horizontal: 10,
+          //       ),
+          //     ), //horizontal padding is not visible while vertical
+          //     //padding app padding around sliver app bar
+          //     const SliverAppBar(
+          //       pinned: true,
+          //       snap: false,
+          //       floating: true,
+          //       expandedHeight: 160.0,
+          //       flexibleSpace: FlexibleSpaceBar(
+          //         title: Text('App Bar'),
+          //       ),
+          //     ),
+          //     SliverGrid(
+          //       delegate: SliverChildBuilderDelegate(
+          //         (context, index) {
+          //           return Container(
+          //             alignment: Alignment.center,
+          //             color: index.isEven ? Colors.orangeAccent : Colors.amber,
+          //             child: Text('Grid $index'),
+          //           );
+          //         },
+          //         childCount: 10,
+          //       ),
+          //       gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+          //         maxCrossAxisExtent: 300,
+          //         mainAxisSpacing: 10,
+          //         crossAxisSpacing: 10,
+          //         childAspectRatio: 4,
+          //       ),
+          //     ),
+          //     SliverList(
+          //         delegate: SliverChildBuilderDelegate(
+          //             (BuildContext context, int index) {
+          //       return Container(
+          //           color: index.isEven ? Colors.white : Colors.black12,
+          //           height: 100,
+          //           child: Center(
+          //             child: Text(
+          //               '$index',
+          //               textScaleFactor: 5,
+          //             ),
+          //           ));
+          //     }, childCount: 10))
+          //   ],
+          // ),
           bottomNavigationBar: BottomAppBar(
               shape: const CircularNotchedRectangle(),
               child: Container(
