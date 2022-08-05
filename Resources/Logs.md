@@ -1,4 +1,4 @@
-# '#30-days-of-flutter logs'
+# `#30-days-of-flutter logs`
 
 ## Day 0: July 05, 2022
 
@@ -10,7 +10,7 @@
 
 **Progress**
 
-`Widgets`
+**_Widgets_**
 
 Everything in flutter is a widget. Widgets shows what current state and configuration should look like.
 
