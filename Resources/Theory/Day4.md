@@ -1,7 +1,6 @@
 ## Day 4: February 22, 2022
 
 **Progress**
-- 
 
 - _ListView class_ - A scrollable list of widgets arranged linearly. It contains ListTile.
   There are four options for constructing a ListView:
