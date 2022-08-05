@@ -1,14 +1,20 @@
-# #100-days-of-flutter logs
+# '#30-days-of-flutter logs'
 
-## Day 0: February 10, 2022
+## Day 0: July 05, 2022
 
 **Progress** : Set up development environment for flutter.
 
 [see my progress](https://github.com/saurabhtopthon01/100-days-of-flutter/tree/main/Resources/Project/first_app)
 
-## Day 1: February 11, 2022
+## Day 1: February 06, 2022
 
-**Progress** :About widgets, types of basic widgets. Changing theme like primary color, secondary color. Used the Scaffold class and added the appBar,floatingActionButton,bottomNavigationBar.
+**Progress**
+
+**Widgets**
+
+Everything in flutter is a widget. Widgets shows what current state and configuration should look like.
+
+About widgets, types of basic widgets. Changing theme like primary color, secondary color. Used the Scaffold class and added the appBar,floatingActionButton,bottomNavigationBar.
 
 [see my progress](https://github.com/saurabhtopthon01/100-days-of-flutter/tree/main/Resources/Project/first_app)
 
@@ -73,8 +79,8 @@ A ListView is basically a CustomScrollView with a single SliverList in its Custo
 - CustomScrollView is used with Sliver to make scroll item.
 - ListView is similar to CustomScrollView, and CustomScrollView is more preferable.
 
-
 ### _`Stateless and Statefull widgets`_
+
 - Stateless widget receive argument from their parent and store in _`final`_ member.
 - Flutter uses statefull widget to carry some state.
 

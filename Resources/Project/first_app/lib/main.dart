@@ -31,20 +31,20 @@ class _MyAppState extends State<MyApp> {
         ),
       ),
       home: Scaffold(
-          // appBar: AppBar(
-          //   leading: const IconButton(
-          //     onPressed: null,
-          //     icon: Icon(Icons.menu),
-          //   ),
-          //   title: const Text("App"),
-          //   actions: [
-          //     IconButton(
-          //       onPressed: () {},
-          //       icon: const Icon(Icons.search),
-          //       tooltip: 'Search',
-          //     )
-          //   ],
-          // ),
+          appBar: AppBar(
+            leading: const IconButton(
+              onPressed: null,
+              icon: Icon(Icons.menu),
+            ),
+            title: const Text("App"),
+            actions: [
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(Icons.search),
+                tooltip: 'Search',
+              )
+            ],
+          ),
           drawer: Drawer(
             child: ListView(
               children: [
@@ -74,20 +74,33 @@ class _MyAppState extends State<MyApp> {
               ],
             ),
           ),
-          body: SingleChildScrollView(
-            child: Column(
-              children: const [
-                Text(
-                  'Checking scrollview',
-                  textScaleFactor: 10,
-                ),
-                Text(
-                  'using column widget',
-                  textScaleFactor: 10,
-                ),
-              ],
-            ),
+          body: Row(
+            children: [
+              ElevatedButton(
+                child: const Text('Increment'),
+                onPressed: () {
+                  setState(() {
+                    _count++;
+                  });
+                },
+              ),
+              Text("count : $_count")
+            ],
           ),
+          // SingleChildScrollView(
+          //   child: Column(
+          //     children: const [
+          //       Text(
+          //         'Checking scrollview',
+          //         textScaleFactor: 10,
+          //       ),
+          //       Text(
+          //         'using column widget',
+          //         textScaleFactor: 10,
+          //       ),
+          //     ],
+          //   ),
+          // ),
           //  CustomScrollView(
           //   slivers: [
           //     const SliverPadding(
