@@ -10,7 +10,7 @@
 
 **Progress**
 
-**Widgets**
+`Widgets`
 
 Everything in flutter is a widget. Widgets shows what current state and configuration should look like.
 
