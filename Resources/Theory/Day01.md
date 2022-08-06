@@ -10,9 +10,6 @@ Text, Row/Column, Stack, Container are some of the basic widgets.
 
 Flutter provides widgets that follow material design, MaterialApp widgets is one of them. AppBar,Scaffold these are material app widgets.
 
-**How flutter transformed into native app**
-
-
 - [YouTube](https://www.youtube.com/watch?v=W1pNjxmNHNQ&ab_channel=GoogleDevelopers)
 
 - [Doc](https://docs.flutter.dev/development/ui/widgets-intro)
