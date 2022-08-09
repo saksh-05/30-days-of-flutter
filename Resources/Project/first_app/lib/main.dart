@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:first_app/screen/Day01.dart';
+import 'package:first_app/screen/Day02.dart';
 
 void main() {
   runApp(MyApp());
 }
 
+//for routing
+// https://medium.com/flutter/learning-flutters-new-navigation-and-routing-system-7c9068155ade
 class MyApp extends StatefulWidget {
   @override
   State<MyApp> createState() => _MyAppState();
@@ -16,156 +20,90 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "First Firebase App",
-      theme: ThemeData(
-        primarySwatch: Colors.blueGrey,
-        colorScheme: ColorScheme.fromSwatch().copyWith(
-          primary: Colors.blueAccent,
-          secondary: Colors.blueAccent,
-        ),
-        buttonTheme: ButtonTheme.of(context).copyWith(
-          buttonColor: Colors.amberAccent,
-          textTheme: ButtonTextTheme.primary,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-        ),
+      // theme: ThemeData(
+      //   primarySwatch: Colors.blueGrey,
+      //   colorScheme: ColorScheme.fromSwatch().copyWith(
+      //     primary: Colors.blueAccent,
+      //     secondary: Colors.blueAccent,
+      //   ),
+      //   buttonTheme: ButtonTheme.of(context).copyWith(
+      //     buttonColor: Colors.amberAccent,
+      //     textTheme: ButtonTextTheme.primary,
+      //     shape: RoundedRectangleBorder(
+      //       borderRadius: BorderRadius.circular(10),
+      //     ),
+      //   ),
+      // ),
+      routes: {
+        // '/': ((context) => MyApp()),
+        '/day01': (context) => Day01(),
+        '/day02': (context) => Day02(),
+      },
+      home: newHome(),
+    );
+  }
+}
+
+class newHome extends StatelessWidget {
+  // const newHome({ Key? key }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        leading: null,
+        title: const Text("30 Day Flutter"),
+        automaticallyImplyLeading: false,
       ),
-      home: Scaffold(
-          appBar: AppBar(
-            leading: const IconButton(
-              onPressed: null,
-              icon: Icon(Icons.menu),
-            ),
-            title: const Text("App"),
-            actions: [
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.search),
-                tooltip: 'Search',
-              )
-            ],
-          ),
-          drawer: Drawer(
-            child: ListView(
-              children: [
-                Container(
-                  height: 70,
-                  padding: const EdgeInsets.only(top: 20),
-                  decoration: const BoxDecoration(color: Colors.blue),
-                  alignment: const Alignment(0.0, 0.0),
-                  child: const DrawerHeader(
-                    padding: EdgeInsets.zero,
-                    child: Text(
-                      'Drawer Header',
-                      style: TextStyle(
-                        color: Color.fromARGB(255, 247, 246, 252),
-                        fontSize: 24,
-                      ),
+      body: ListView(
+        padding: EdgeInsets.zero,
+        children: [
+          InkWell(
+            onTap: () {
+              Navigator.pushNamed(context, '/day01');
+            },
+            child: const Card(
+              color: Color.fromARGB(255, 10, 196, 22),
+              child: SizedBox(
+                width: 300,
+                height: 60,
+                child: Center(
+                  child: Text(
+                    "Day-01",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.white,
                     ),
                   ),
                 ),
-                ListTile(
-                  leading: const Icon(Icons.home),
-                  title: const Text('Home'),
-                  onTap: () {
-                    // Navigator.of(context).pushNamed()
-                  },
-                )
-              ],
+              ),
             ),
           ),
-          body: Row(
-            children: [
-              ElevatedButton(
-                child: const Text('Increment'),
-                onPressed: () {
-                  setState(() {
-                    _count++;
-                  });
-                },
+          InkWell(
+            onTap: () {
+              Navigator.pushNamed(context, '/day02');
+            },
+            child: const Card(
+              color: Color.fromARGB(255, 10, 196, 22),
+              child: SizedBox(
+                width: 300,
+                height: 60,
+                child: Center(
+                  child: Text(
+                    "Day-02",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
               ),
-              Text("count : $_count")
-            ],
+            ),
           ),
-          // SingleChildScrollView(
-          //   child: Column(
-          //     children: const [
-          //       Text(
-          //         'Checking scrollview',
-          //         textScaleFactor: 10,
-          //       ),
-          //       Text(
-          //         'using column widget',
-          //         textScaleFactor: 10,
-          //       ),
-          //     ],
-          //   ),
-          // ),
-          //  CustomScrollView(
-          //   slivers: [
-          //     const SliverPadding(
-          //       padding: EdgeInsets.symmetric(
-          //         vertical: 0,
-          //         horizontal: 10,
-          //       ),
-          //     ), //horizontal padding is not visible while vertical
-          //     //padding app padding around sliver app bar
-          //     const SliverAppBar(
-          //       pinned: true,
-          //       snap: false,
-          //       floating: true,
-          //       expandedHeight: 160.0,
-          //       flexibleSpace: FlexibleSpaceBar(
-          //         title: Text('App Bar'),
-          //       ),
-          //     ),
-          //     SliverGrid(
-          //       delegate: SliverChildBuilderDelegate(
-          //         (context, index) {
-          //           return Container(
-          //             alignment: Alignment.center,
-          //             color: index.isEven ? Colors.orangeAccent : Colors.amber,
-          //             child: Text('Grid $index'),
-          //           );
-          //         },
-          //         childCount: 10,
-          //       ),
-          //       gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-          //         maxCrossAxisExtent: 300,
-          //         mainAxisSpacing: 10,
-          //         crossAxisSpacing: 10,
-          //         childAspectRatio: 4,
-          //       ),
-          //     ),
-          //     SliverList(
-          //         delegate: SliverChildBuilderDelegate(
-          //             (BuildContext context, int index) {
-          //       return Container(
-          //           color: index.isEven ? Colors.white : Colors.black12,
-          //           height: 100,
-          //           child: Center(
-          //             child: Text(
-          //               '$index',
-          //               textScaleFactor: 5,
-          //             ),
-          //           ));
-          //     }, childCount: 10))
-          //   ],
-          // ),
-          bottomNavigationBar: BottomAppBar(
-              shape: const CircularNotchedRectangle(),
-              child: Container(
-                height: 50,
-              )),
-          floatingActionButton: FloatingActionButton(
-            onPressed: () => setState(() {
-              _count++;
-            }),
-            tooltip: "Increament Counter",
-            child: const Icon(Icons.add),
-          ),
-          floatingActionButtonLocation:
-              FloatingActionButtonLocation.centerDocked),
+        ],
+      ),
     );
   }
 }

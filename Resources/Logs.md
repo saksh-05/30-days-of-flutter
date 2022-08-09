@@ -6,7 +6,7 @@
 
 [see my progress](https://github.com/saurabhtopthon01/100-days-of-flutter/tree/main/Resources/Project/first_app)
 
-### **[Day 1: February 06, 2022]()**
+### **[Day 1: February 09, 2022]()**
 
 <!--
 
