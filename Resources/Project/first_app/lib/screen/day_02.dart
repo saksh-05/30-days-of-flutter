@@ -15,34 +15,30 @@ class Day02 extends StatelessWidget {
       ),
       body: const Center(
         child: Text(
-          'Day-01',
-          textScaleFactor: 4,
+          'Day-02 listview and tiles',
         ),
       ),
       drawer: Drawer(
         child: Column(
           children: [
-            const SizedBox(
-              height: 150.0,
-              width: double.infinity,
-              child: DrawerHeader(
-                decoration: BoxDecoration(
-                  color: Color.fromARGB(255, 3, 80, 118),
-                ),
-                margin: EdgeInsets.zero,
-                padding: EdgeInsets.zero,
-                child: Center(
-                  child: Text(
-                    "Day 02 Drawer",
-                    textScaleFactor: 1.5,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w800,
-                    ),
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Color.fromARGB(255, 3, 80, 118),
+              ),
+              margin: EdgeInsets.zero,
+              padding: EdgeInsets.zero,
+              child: Center(
+                child: Text(
+                  "Day 02 Drawer",
+                  textScaleFactor: 1.5,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w800,
                   ),
                 ),
               ),
             ),
+            // ),
             Expanded(
               child: ListView(
                 children: [

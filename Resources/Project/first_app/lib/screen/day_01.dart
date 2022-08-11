@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 class Day01 extends StatelessWidget {
@@ -9,20 +8,8 @@ class Day01 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // leading: const IconButton(
-        //   onPressed: null,
-        //   icon: Icon(Icons.menu),
-        // ),
         title: const Text("Day01"),
-        backgroundColor: Color.fromARGB(255, 3, 80, 118),
-
-        // actions: [
-        //   IconButton(
-        //     onPressed: () {},
-        //     icon: const Icon(Icons.search),
-        //     tooltip: 'Search',
-        //   )
-        // ],
+        backgroundColor: const Color.fromARGB(255, 3, 80, 118),
       ),
       drawer: Drawer(
         child: ListView(
@@ -62,10 +49,21 @@ class Day01 extends StatelessWidget {
           ],
         ),
       ),
-      body: const Center(
-        child: Text(
-          'Day-01',
-          textScaleFactor: 4,
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        // height: 100,
+        // width: double.infinity,
+        child: Column(
+          children: const [
+            Text(
+              'Day-01',
+              textScaleFactor: 2,
+            ),
+            Text(
+              'Day-01',
+              textScaleFactor: 2,
+            ),
+          ],
         ),
       ),
     );
