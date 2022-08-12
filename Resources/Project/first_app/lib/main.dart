@@ -99,17 +99,7 @@ class _MyAppState extends State<MyApp> {
         String val = settings.name as String;
         log(val);
         return MaterialPageRoute(builder: (_) => route[val] as Widget);
-        // switch(val){
-        //   case route[val]:
-
-        // }
       },
-      // routes: {
-      //   // '/': ((context) => MyApp()),
-      //   '/day01': (context) => Day01(),
-      //   '/day02': (context) => Day02(),
-      //   '/day03': (context) => Day03(),
-      // },
       home: newHome(),
     );
   }
