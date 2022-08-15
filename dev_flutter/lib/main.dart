@@ -100,12 +100,12 @@ class _MyAppState extends State<MyApp> {
         log(val);
         return MaterialPageRoute(builder: (_) => route[val] as Widget);
       },
-      home: newHome(),
+      home: Newhome(),
     );
   }
 }
 
-class newHome extends StatelessWidget {
+class Newhome extends StatelessWidget {
   // const newHome({ Key? key }) : super(key: key);
 
   @override
