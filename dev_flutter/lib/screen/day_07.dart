@@ -82,13 +82,13 @@ class Day07State extends State<Day07> {
                     return index != 0
                         ? ListTile(
                             title: Text(
-                                index + 1 < 10 ? 'Day-0$index' : 'Day-$index'),
+                                index < 10 ? 'Day-0$index' : 'Day-$index'),
                             tileColor: Colors.amberAccent[700],
                             textColor: Colors.white,
                             onTap: () {
                               Navigator.pushNamed(
                                   context,
-                                  index + 1 < 10
+                                  index < 10
                                       ? '/day0$index'
                                       : '/day$index');
                             },

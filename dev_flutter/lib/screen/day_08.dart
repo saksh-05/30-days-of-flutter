@@ -1,8 +1,5 @@
-import 'dart:convert';
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 
 class Day08 extends StatefulWidget {
   @override
@@ -12,47 +9,15 @@ class Day08 extends StatefulWidget {
   }
 }
 
-// Future<Breed> fetchBreed() async {
-//   final response =
-//       await http.get(Uri.parse('https://dog.ceo/api/breeds/list/all'));
-//   if (response.statusCode == 200) {
-//     // log(response.body[0]);
-//     Map<String, dynamic> val = json.decode(response.body);
-//     // log(val['message']);
-//     print(val['message'][0]);
-//     return Breed.fromJson(val);
-//   } else {
-//     throw Exception("Breed fetching erorr");
-//   }
-// }
-
-// class Breed {
-//   final String name;
-
-//   Breed({required this.name});
-
-//   factory Breed.fromJson(Map<String, dynamic> json) {
-//     // log(json);
-//     return Breed(name: json['message']);
-//   }
-// }
 
 class Day08State extends State<Day08> {
-  // const ({ Key? key }) : super(key: key);
-  // late Future<Breed> breed;
-  // List _breed = [];
-  // @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   super.initState();
-  //   breed = fetchBreed();
-  // }
+ 
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Day07"),
+        title: const Text("Day08"),
         backgroundColor: const Color.fromARGB(255, 3, 80, 118),
       ),
       drawer: Drawer(
@@ -85,13 +50,13 @@ class Day08State extends State<Day08> {
                     return index != 0
                         ? ListTile(
                             title: Text(
-                                index + 1 < 10 ? 'Day-0$index' : 'Day-$index'),
+                                index  < 10 ? 'Day-0$index' : 'Day-$index'),
                             tileColor: Colors.amberAccent[700],
                             textColor: Colors.white,
                             onTap: () {
                               Navigator.pushNamed(
                                   context,
-                                  index + 1 < 10
+                                  index < 10
                                       ? '/day0$index'
                                       : '/day$index');
                             },
@@ -116,7 +81,7 @@ class Day08State extends State<Day08> {
         ),
       ),
       body: const Center(
-        child: Text("Day 08 delegate"),
+        child: Text("Day 08 more slivers"),
       ),
     );
   }

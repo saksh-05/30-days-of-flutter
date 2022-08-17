@@ -177,16 +177,13 @@ class Day05State extends State<Day05> {
                   itemBuilder: (context, index) {
                     return index != 0
                         ? ListTile(
-                            title: Text(
-                                index + 1 < 10 ? 'Day-0$index' : 'Day-$index'),
+                            title:
+                                Text(index < 10 ? 'Day-0$index' : 'Day-$index'),
                             tileColor: Colors.amberAccent[700],
                             textColor: Colors.white,
                             onTap: () {
-                              Navigator.pushNamed(
-                                  context,
-                                  index + 1 < 10
-                                      ? '/day0$index'
-                                      : '/day$index');
+                              Navigator.pushNamed(context,
+                                  index < 10 ? '/day0$index' : '/day$index');
                             },
                           )
                         : ListTile(
