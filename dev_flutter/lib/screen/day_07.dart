@@ -1,5 +1,6 @@
 import 'dart:convert';
-import 'dart:developer';
+import 'dart:developer' as dev;
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -24,10 +25,31 @@ Future<List<Breed>> fetchBreed() async {
   }
 }
 
+Future<List<String>> fetchBreedImage(_selectedBreedName) async {
+  // log("selected name"();
+  final response = await http
+      .get(Uri.parse('https://dog.ceo/api/breed/$_selectedBreedName/images'));
+  if (response.statusCode == 200) {
+    // log(response.body[4]);
+    final body = json.decode(response.body)['message'];
+    List<String> res = List<String>.from(body);
+    // print(body[0]);
+    // log(body[0]);
+    return res;
+  } else {
+    throw Exception("Select a breed");
+  }
+}
+
 class Breed {
   final String breedName;
 
   Breed({required this.breedName});
+
+  @override
+  String toString() {
+    return breedName;
+  }
 
   factory Breed.fromJson(json) {
     return Breed(breedName: json);
@@ -36,13 +58,17 @@ class Breed {
 
 class Day07State extends State<Day07> {
   // const ({ Key? key }) : super(key: key);
-  late Future<List<Breed>> breed;
+  var _selectedBreedName = "";
+  late Future<List<Breed>> breedOptions;
+  late Future<List<String>> breedImage;
   // List _breed = [];
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    breed = fetchBreed();
+    breedOptions = fetchBreed();
+    breedImage = fetchBreedImage(_selectedBreedName);
+    // breedImage = fetchBreedImage();
   }
 
   @override
@@ -81,16 +107,13 @@ class Day07State extends State<Day07> {
                   itemBuilder: (context, index) {
                     return index != 0
                         ? ListTile(
-                            title: Text(
-                                index < 10 ? 'Day-0$index' : 'Day-$index'),
+                            title:
+                                Text(index < 10 ? 'Day-0$index' : 'Day-$index'),
                             tileColor: Colors.amberAccent[700],
                             textColor: Colors.white,
                             onTap: () {
-                              Navigator.pushNamed(
-                                  context,
-                                  index < 10
-                                      ? '/day0$index'
-                                      : '/day$index');
+                              Navigator.pushNamed(context,
+                                  index < 10 ? '/day0$index' : '/day$index');
                             },
                           )
                         : ListTile(
@@ -112,35 +135,77 @@ class Day07State extends State<Day07> {
           ],
         ),
       ),
-      body: FutureBuilder<List<Breed>>(
-        future: breed,
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            // print(snapshot.data?.breedName);
-            // if(snapshot.data?.breedName !=null)
-            // Column(
-            //   children: [for (var name in snapshot.data!.breedName) Text(name)],
-            // );
-            final breeds = snapshot.data!;
+      body: Column(
+        children: [
+          FutureBuilder<List<Breed>>(
+            future: breedOptions,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                // static String  _breed(Breed e)=>
+                final breeds = snapshot.data!;
+                String _breedDisplaystring(Breed option) => option.breedName;
 
-            return ListView.builder(
-              itemBuilder: (context, index) {
-                final breedname = breeds[index];
-                return Text(breedname.breedName);
+                return Autocomplete<Breed>(
+                  displayStringForOption: _breedDisplaystring,
+                  optionsBuilder: (textEditingValue) {
+                    if (textEditingValue.text == '') {
+                      return const Iterable<Breed>.empty();
+                    }
+                    return breeds.where((element) {
+                      return element
+                          .toString()
+                          .contains(textEditingValue.text.toLowerCase());
+                    });
+                  },
+                  onSelected: ((option) {
+                    setState(() {
+                      _selectedBreedName = option.toString();
+                    });
+                    breedImage = fetchBreedImage(_selectedBreedName);
+                  }),
+                );
+              } else if (snapshot.hasError) {
+                return Text('${snapshot.error}');
+              }
+              return const CircularProgressIndicator();
+            },
+          ),
+          Expanded(
+            child: FutureBuilder<List<String>>(
+              future: breedImage,
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  final img = snapshot.data!;
+                  // img[Random().nextInt(img.length)];
+                  // final img = (val..shuffle()).first;
+                  // debugPrint(img.toString());
+                  return GridView.builder(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 4,
+                      crossAxisSpacing: 4,
+                    ),
+                    itemCount: img.length > 26 ? 26 : img.length,
+                    itemBuilder: (context, index) {
+                      return Container(
+                        height: 70,
+                        width: 70,
+                        child: FittedBox(
+                          fit: BoxFit.fill, child: Image.network(img[index]),
+                          // Image.network(img[Random().nextInt(img.length)]),
+                        ),
+                      );
+                    },
+                  );
+                } else if (snapshot.hasError) {
+                  return Text('${snapshot.error}');
+                }
+                return const Text("No breed selected");
               },
-              itemCount: breeds.length,
-            );
-            // (name) {
-            //   print(name);
-            //   return Text(name);
-            // },
-            // );
-            // return Text(snapshot.data!.breedName[0]);
-          } else if (snapshot.hasError) {
-            return Text('${snapshot.error}');
-          }
-          return const CircularProgressIndicator();
-        },
+            ),
+          )
+        ],
       ),
     );
   }
