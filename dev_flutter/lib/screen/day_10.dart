@@ -13,8 +13,14 @@ class Day10State extends State<Day10> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Day10"),
+        title: const Text("Day 10 Animation"),
         backgroundColor: const Color.fromARGB(255, 3, 80, 118),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.settings),
+          )
+        ],
       ),
       drawer: Drawer(
         child: Column(
@@ -45,16 +51,13 @@ class Day10State extends State<Day10> {
                   itemBuilder: (context, index) {
                     return index != 0
                         ? ListTile(
-                            title: Text(
-                                index + 1 < 10 ? 'Day-0$index' : 'Day-$index'),
+                            title:
+                                Text(index < 10 ? 'Day-0$index' : 'Day-$index'),
                             tileColor: Colors.amberAccent[700],
                             textColor: Colors.white,
                             onTap: () {
-                              Navigator.pushNamed(
-                                  context,
-                                  index + 1 < 10
-                                      ? '/day0$index'
-                                      : '/day$index');
+                              Navigator.pushNamed(context,
+                                  index < 10 ? '/day0$index' : '/day$index');
                             },
                           )
                         : ListTile(
@@ -76,8 +79,57 @@ class Day10State extends State<Day10> {
           ],
         ),
       ),
-      body: const Center(
-        child: Text("Day 10 animation"),
+      body: Column(
+        children: [
+          Container(
+            height: 200,
+            width: double.infinity,
+            child: FittedBox(
+              fit: BoxFit.fill,
+              child: Image.network(
+                  'https://images.unsplash.com/photo-1505322022379-7c3353ee6291?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80'),
+            ),
+          ),
+          Container(
+            height: 50,
+            color: Colors.blueGrey,
+            child: const Center(
+              child: Text(
+                "Row and Column",
+                textScaleFactor: 1.5,
+                style:
+                    TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+              ),
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              IconButton(
+                iconSize: 64,
+                onPressed: () {},
+                icon: const Icon(Icons.flutter_dash),
+              ),
+              IconButton(
+                iconSize: 64,
+                onPressed: () {},
+                icon: const Icon(Icons.flutter_dash),
+              ),
+              IconButton(
+                iconSize: 64,
+                onPressed: () {},
+                icon: const Icon(Icons.flutter_dash),
+              ),
+            ],
+          ),
+          Container(
+            child: const Text(
+              "lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tristique bibendum nunc, eu lacinia lacus tempus at. Vestibulum ac urna porta, aliquam metus ut, dignissim arcu. Vivamus posuere, quam eu venenatis volutpat, nunc dolor lacinia ipsum, et eleifend nisi enim a tellus. Aliquam semper erat et augue vestibulum, vel gravida ipsum luctus. Phasellus ac feugiat mi. Suspendisse venenatis non sem eu tempus. Morbi ornare eros eu magna laoreet scelerisque. ",
+              textAlign: TextAlign.center,
+            ),
+            padding: const EdgeInsets.all(10),
+          ),
+        ],
       ),
     );
   }
