@@ -95,7 +95,7 @@ class Day10State extends State<Day10> {
             color: Colors.blueGrey,
             child: const Center(
               child: Text(
-                "Row and Column",
+                "Flutter Animation",
                 textScaleFactor: 1.5,
                 style:
                     TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
@@ -124,7 +124,7 @@ class Day10State extends State<Day10> {
           ),
           Container(
             child: const Text(
-              "lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tristique bibendum nunc, eu lacinia lacus tempus at. Vestibulum ac urna porta, aliquam metus ut, dignissim arcu. Vivamus posuere, quam eu venenatis volutpat, nunc dolor lacinia ipsum, et eleifend nisi enim a tellus. Aliquam semper erat et augue vestibulum, vel gravida ipsum luctus. Phasellus ac feugiat mi. Suspendisse venenatis non sem eu tempus. Morbi ornare eros eu magna laoreet scelerisque. ",
+              "Animation in flutter can be done in ",
               textAlign: TextAlign.center,
             ),
             padding: const EdgeInsets.all(10),

@@ -122,7 +122,7 @@ class Newhome extends StatelessWidget {
             return InkWell(
               onTap: () {
                 Navigator.pushNamed(context,
-                    index + 1 < 10 ? '/day0${index + 1}' : '/day{index+1}');
+                    index + 1 < 10 ? '/day0${index + 1}' : '/day${index+1}');
               },
               child: Card(
                 color: const Color.fromARGB(255, 10, 196, 22),
