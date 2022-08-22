@@ -9,8 +9,10 @@ class Day10 extends StatefulWidget {
 }
 
 class Day10State extends State<Day10> {
+  bool isClicked = false;
   @override
   Widget build(BuildContext context) {
+    final clickedTransform = Matrix4.identity()..scale(2.5);
     return Scaffold(
       appBar: AppBar(
         title: const Text("Day 10 Animation"),
@@ -80,55 +82,57 @@ class Day10State extends State<Day10> {
         ),
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Container(
-            height: 200,
-            width: double.infinity,
-            child: FittedBox(
-              fit: BoxFit.fill,
-              child: Image.network(
-                  'https://images.unsplash.com/photo-1505322022379-7c3353ee6291?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80'),
-            ),
-          ),
-          Container(
-            height: 50,
-            color: Colors.blueGrey,
-            child: const Center(
-              child: Text(
-                "Flutter Animation",
-                textScaleFactor: 1.5,
-                style:
-                    TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          GestureDetector(
+            onTap: () {
+              setState(() {
+                isClicked = !isClicked;
+                print(isClicked);
+              });
+            },
+            child: Container(
+              color: Colors.red,
+              // alignment: AlignmentDirectional.center,
+              padding: const EdgeInsets.all(10),
+              height: isClicked ? 40 : 80,
+              width: isClicked ? 40 : 80,
+              // transform: isClicked ? clickedTransform : Matrix4.identity(),
+              child: AnimatedContainer(
+                duration: const Duration(seconds: 1),
+                height: 60,
+                width: 60,
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [Colors.orange, Colors.yellow, Colors.blue],
+                  ),
+                ),
+                transform: isClicked ? clickedTransform : Matrix4.identity(),
               ),
             ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              IconButton(
-                iconSize: 64,
-                onPressed: () {},
-                icon: const Icon(Icons.flutter_dash),
-              ),
-              IconButton(
-                iconSize: 64,
-                onPressed: () {},
-                icon: const Icon(Icons.flutter_dash),
-              ),
-              IconButton(
-                iconSize: 64,
-                onPressed: () {},
-                icon: const Icon(Icons.flutter_dash),
-              ),
-            ],
-          ),
-          Container(
-            child: const Text(
-              "Animation in flutter can be done in ",
-              textAlign: TextAlign.center,
-            ),
-            padding: const EdgeInsets.all(10),
-          ),
+          // GestureDetector(
+          //   onTap: () {
+          //     setState(() {
+          //       isClicked = !isClicked;
+          //       print(isClicked);
+          //     });
+          //   },
+          //   child: Container(
+          //     color: Color.fromARGB(255, 61, 211, 81),
+          //     alignment: Alignment.center,
+          //     padding: const EdgeInsets.all(10),
+          //     height: 100,
+          //     child: AnimatedContainer(
+          //       color: Color.fromARGB(255, 70, 190, 250),
+          //       duration: const Duration(seconds: 1),
+          //       height: 60,
+          //       width: 60,
+          //       transform: isClicked ? clickedTransform : Matrix4.identity(),
+          //     ),
+          //   ),
+          // ),
         ],
       ),
     );
