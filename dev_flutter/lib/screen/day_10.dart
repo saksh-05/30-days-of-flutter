@@ -9,10 +9,17 @@ class Day10 extends StatefulWidget {
 }
 
 class Day10State extends State<Day10> {
-  bool isClicked = false;
+  bool firstClicked = false;
+  bool secondClicked = false;
+  bool thirdClicked = false;
   @override
   Widget build(BuildContext context) {
-    final clickedTransform = Matrix4.identity()..scale(2.5);
+    final clickedTransform = Transform.translate(
+      offset: Offset(10.0, 10.0),
+      
+    );
+
+    // ..translate(20, 20);
     return Scaffold(
       appBar: AppBar(
         title: const Text("Day 10 Animation"),
@@ -82,57 +89,145 @@ class Day10State extends State<Day10> {
         ),
       ),
       body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          GestureDetector(
-            onTap: () {
-              setState(() {
-                isClicked = !isClicked;
-                print(isClicked);
-              });
-            },
+          const SizedBox(
+            height: 10,
+          ),
+          SizedBox(
+            height: 200,
+            width: 200,
             child: Container(
-              color: Colors.red,
-              // alignment: AlignmentDirectional.center,
-              padding: const EdgeInsets.all(10),
-              height: isClicked ? 40 : 80,
-              width: isClicked ? 40 : 80,
-              // transform: isClicked ? clickedTransform : Matrix4.identity(),
-              child: AnimatedContainer(
-                duration: const Duration(seconds: 1),
-                height: 60,
-                width: 60,
-                decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [Colors.orange, Colors.yellow, Colors.blue],
-                  ),
-                ),
-                transform: isClicked ? clickedTransform : Matrix4.identity(),
-              ),
+              decoration: BoxDecoration(
+                  border: Border.all(
+                color: Colors.black,
+                width: 1,
+              )),
             ),
           ),
-          // GestureDetector(
-          //   onTap: () {
-          //     setState(() {
-          //       isClicked = !isClicked;
-          //       print(isClicked);
-          //     });
-          //   },
-          //   child: Container(
-          //     color: Color.fromARGB(255, 61, 211, 81),
-          //     alignment: Alignment.center,
-          //     padding: const EdgeInsets.all(10),
-          //     height: 100,
-          //     child: AnimatedContainer(
-          //       color: Color.fromARGB(255, 70, 190, 250),
-          //       duration: const Duration(seconds: 1),
-          //       height: 60,
-          //       width: 60,
-          //       transform: isClicked ? clickedTransform : Matrix4.identity(),
-          //     ),
-          //   ),
-          // ),
+          const SizedBox(
+            height: 10,
+          ),
+          Row(
+            children: [
+              const SizedBox(
+                width: 20,
+              ),
+              Expanded(
+                child: GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      firstClicked = !firstClicked;
+                    });
+                  },
+                  child: AnimatedContainer(
+                    duration: const Duration(seconds: 1),
+                    height: 60,
+                    width: 60,
+                    decoration: const BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [Colors.orange, Colors.yellow, Colors.blue],
+                      ),
+                    ),
+                    transform:
+                        firstClicked ? clickedTransform : Matrix4.identity(),
+                    child: const Center(
+                      child: Text(
+                        "One",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                width: 20,
+              ),
+              Expanded(
+                child: GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      secondClicked = !secondClicked;
+                    });
+                  },
+                  child: AnimatedContainer(
+                    duration: const Duration(seconds: 1),
+                    height: 60,
+                    width: 60,
+                    decoration: const BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [Colors.orange, Colors.yellow, Colors.blue],
+                      ),
+                    ),
+                    transform:
+                        secondClicked ? clickedTransform : Matrix4.identity(),
+                    child: const Center(
+                      child: Text(
+                        "One",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                width: 20,
+              ),
+              Expanded(
+                child: GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      thirdClicked = !thirdClicked;
+                    });
+                  },
+                  child: AnimatedContainer(
+                    duration: const Duration(seconds: 1),
+                    height: 60,
+                    width: 60,
+                    decoration: const BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [Colors.orange, Colors.yellow, Colors.blue],
+                      ),
+                    ),
+                    transform:
+                        thirdClicked ? clickedTransform : Matrix4.identity(),
+                    child: const Center(
+                      child: Text(
+                        "One",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                width: 20,
+              ),
+
+              // GestureDetector(
+              //   onTap: () {
+              //     setState(() {
+              //       isClicked = !isClicked;
+              //       print(isClicked);
+              //     });
+              //   },
+              //   child: Container(
+              //     color: Colors.red,
+              //     padding: const EdgeInsets.all(10),
+              //     child: AnimatedContainer(
+              //       duration: const Duration(seconds: 1),
+              //       height: 60,
+              //       width: 60,
+              //       decoration: const BoxDecoration(
+              //         gradient: LinearGradient(
+              //           colors: [Colors.orange, Colors.yellow, Colors.blue],
+              //         ),
+              //       ),
+              //       transform: isClicked ? clickedTransform : Matrix4.identity(),
+              //     ),
+              //   ),
+              // ),
+            ],
+          ),
         ],
       ),
     );
