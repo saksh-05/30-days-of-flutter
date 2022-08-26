@@ -128,8 +128,8 @@ class Day10State extends State<Day10> {
                         colors: [Colors.orange, Colors.yellow, Colors.blue],
                       ),
                     ),
-                    transform:
-                        firstClicked ? clickedTransform : Matrix4.identity(),
+                    // transform:
+                        // firstClicked ? clickedTransform : Matrix4.identity(),
                     child: const Center(
                       child: Text(
                         "One",
@@ -158,8 +158,8 @@ class Day10State extends State<Day10> {
                         colors: [Colors.orange, Colors.yellow, Colors.blue],
                       ),
                     ),
-                    transform:
-                        secondClicked ? clickedTransform : Matrix4.identity(),
+                    // transform:
+                    //     secondClicked ? clickedTransform : Matrix4.identity(),
                     child: const Center(
                       child: Text(
                         "One",
@@ -188,8 +188,8 @@ class Day10State extends State<Day10> {
                         colors: [Colors.orange, Colors.yellow, Colors.blue],
                       ),
                     ),
-                    transform:
-                        thirdClicked ? clickedTransform : Matrix4.identity(),
+                    // transform:
+                    //     thirdClicked ? clickedTransform : Matrix4.identity(),
                     child: const Center(
                       child: Text(
                         "One",
