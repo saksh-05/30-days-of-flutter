@@ -10,6 +10,7 @@ class Day12 extends StatefulWidget {
 
 class Day12State extends State<Day12> {
   int _index = 0;
+  int _selectedOption = -1;
   @override
   void initState() {
     // TODO: implement initState
@@ -19,6 +20,7 @@ class Day12State extends State<Day12> {
   void changeIndex() {
     setState(() {
       _index = (_index + 1) % 5;
+      _selectedOption = -1;
     });
   }
 
@@ -29,6 +31,34 @@ class Day12State extends State<Day12> {
     "Select D:",
     "Select E:",
   ];
+  static const options = ["A", "B", "C", "D", "E"];
+
+  List<Widget> _optionButtons() {
+    List<Widget> _options = List.generate(
+      options.length,
+      (indx) {
+        print("values");
+        print(_index);
+        print(_selectedOption);
+        return ElevatedButton(
+          child: Text(options[indx]),
+          style: ElevatedButton.styleFrom(
+            primary: _selectedOption != -1
+                ? (_index == _selectedOption
+                    ? Colors.green
+                    : _selectedOption == indx
+                        ? Colors.red
+                        : Colors.blue)
+                : Colors.blue,
+          ),
+          onPressed: () => setState(() {
+            _selectedOption = indx;
+          }),
+        );
+      },
+    );
+    return _options;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -101,37 +131,13 @@ class Day12State extends State<Day12> {
           children: [
             Text(questions[_index]),
             SizedBox(
-              height: 250,
-              child: ListView.builder(
-                itemBuilder: (context,in),
-                children: [
-                  ElevatedButton(
-                    onPressed: changeIndex,
-                    child: const Text("A"),
-                  ),
-                  ElevatedButton(
-                    onPressed: changeIndex,
-                    child: const Text("B"),
-                  ),
-                  ElevatedButton(
-                    onPressed: changeIndex,
-                    child: const Text("C"),
-                  ),
-                  ElevatedButton(
-                    onPressed: changeIndex,
-                    child: const Text("D"),
-                  ),
-                  ElevatedButton(
-                    onPressed: changeIndex,
-                    child: const Text("E"),
-                  ),
-                ],
-              ),
+              height: 240,
+              child: ListView(children: _optionButtons()),
             ),
             Container(
               alignment: AlignmentDirectional.topEnd,
               child: OutlinedButton(
-                onPressed: () {},
+                onPressed: changeIndex,
                 child: const Text("Next"),
               ),
             ),
