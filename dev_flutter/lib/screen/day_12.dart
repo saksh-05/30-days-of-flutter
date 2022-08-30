@@ -11,6 +11,8 @@ class Day12 extends StatefulWidget {
 class Day12State extends State<Day12> {
   int _index = 0;
   int _selectedOption = -1;
+  int score = 0;
+  bool optionSelected = false;
   @override
   void initState() {
     // TODO: implement initState
@@ -19,8 +21,20 @@ class Day12State extends State<Day12> {
 
   void changeIndex() {
     setState(() {
-      _index = (_index + 1) % 5;
+      if (_index < 4) {
+        _index = (_index + 1) % 5;
+      }
       _selectedOption = -1;
+      optionSelected = false;
+    });
+  }
+
+  void restartGame() {
+    setState(() {
+      _index = 0;
+      _selectedOption = -1;
+      optionSelected = false;
+      score = 0;
     });
   }
 
@@ -37,23 +51,31 @@ class Day12State extends State<Day12> {
     List<Widget> _options = List.generate(
       options.length,
       (indx) {
-        print("values");
-        print(_index);
-        print(_selectedOption);
         return ElevatedButton(
           child: Text(options[indx]),
           style: ElevatedButton.styleFrom(
-            primary: _selectedOption != -1
-                ? (_index == _selectedOption
+            primary: optionSelected
+                ? (_index == indx
                     ? Colors.green
                     : _selectedOption == indx
                         ? Colors.red
                         : Colors.blue)
                 : Colors.blue,
           ),
-          onPressed: () => setState(() {
-            _selectedOption = indx;
-          }),
+          onPressed:
+              optionSelected && (_index == indx || _selectedOption == indx)
+                  ? () {}
+                  : !optionSelected
+                      ? () => setState(
+                            () {
+                              _selectedOption = indx;
+                              optionSelected = true;
+                              if (_selectedOption == _index) {
+                                score = score + 1;
+                              }
+                            },
+                          )
+                      : null,
         );
       },
     );
@@ -64,7 +86,7 @@ class Day12State extends State<Day12> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Day 12"),
+        title: const Text("Day 12 (Quiz App)"),
         backgroundColor: const Color.fromARGB(255, 3, 80, 118),
       ),
       drawer: Drawer(
@@ -127,18 +149,74 @@ class Day12State extends State<Day12> {
       body: Container(
         padding: EdgeInsets.all(10),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Text(questions[_index]),
+            Text(
+              questions[_index],
+              textScaleFactor: 1.5,
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
             SizedBox(
               height: 240,
-              child: ListView(children: _optionButtons()),
+              child: ListView(
+                  children: List.generate(
+                options.length,
+                (indx) {
+                  return ElevatedButton(
+                    child: Text(options[indx]),
+                    style: ElevatedButton.styleFrom(
+                      primary: optionSelected
+                          ? (_index == indx
+                              ? Colors.green
+                              : _selectedOption == indx
+                                  ? Colors.red
+                                  : Colors.blue)
+                          : Colors.blue,
+                    ),
+                    onPressed: optionSelected &&
+                            (_index == indx || _selectedOption == indx)
+                        ? () {}
+                        : !optionSelected
+                            ? () => setState(
+                                  () {
+                                    _selectedOption = indx;
+                                    optionSelected = true;
+                                    if (_selectedOption == _index) {
+                                      score = score + 1;
+                                    }
+                                  },
+                                )
+                            : null,
+                  );
+                },
+              )),
             ),
-            Container(
-              alignment: AlignmentDirectional.topEnd,
-              child: OutlinedButton(
-                onPressed: changeIndex,
-                child: const Text("Next"),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.red,
+                    ),
+                    onPressed: restartGame,
+                    child: const Text("Restart")),
+                ElevatedButton(
+                  onPressed: optionSelected && _index != 5 ? changeIndex : null,
+                  child: const Text("Next"),
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 50,
+            ),
+            Center(
+              child: Text(
+                "Your Score: $score",
+                textScaleFactor: 1.5,
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ],

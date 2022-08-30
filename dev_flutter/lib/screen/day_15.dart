@@ -6,7 +6,7 @@ class Day15 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Center(
-      child: Text("Day15"),
+      child: Text("Day15 database"),
     );
   }
 }
